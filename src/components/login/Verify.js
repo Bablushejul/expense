@@ -8,7 +8,7 @@ const submitChangeHandler=(event)=>{
 
 const enteredverifyHandler=verifyemailInputRef.current.value;
 
-fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=[API_KEY]",{
+fetch("https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCrucgoKIF2AuihFK5MtNhq7CmGdyFnp5A",{
     method:'POST',
     body:JSON.stringify({
         "X-Firebase-Locale":enteredverifyHandler,

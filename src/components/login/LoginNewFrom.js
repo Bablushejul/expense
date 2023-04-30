@@ -101,7 +101,7 @@ const AuthForm = () => {
             <button>{isLogin ? "Login" : "Create Account"}</button>
           )}
           {isLoading && <p>Sending Request...</p>}
-          {isLogin && <Link to='/forget' > Forget Password ?</Link>}<br/>
+          {!authctx.isLoggedIn&& <Link to='/forget' > Forget Password ?</Link>}<br/>
         </div>
       </form>
       <div >
