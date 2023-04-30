@@ -66,7 +66,7 @@ const Profile = () => {
         })
     })
 }
-useEffect(()=>getDataHandler(), [])
+useEffect(()=>getDataHandler(), )
   //   }).then((res) => {
        
   //     if (res.ok) {
