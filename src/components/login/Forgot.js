@@ -5,6 +5,7 @@ const Forgot = () => {
     <div>
       <form>
         <input type='text' />
+        <button>Forgot</button>
       </form>
     </div>
   );

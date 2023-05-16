@@ -1,54 +1,26 @@
-import React from 'react';
-import Layout from '../Layout/Layout';
+import React,{useState} from "react";
+import './Home.css'
+import Layout from "../Layout/Layout";
+import ExpenseForm from "../Expenses/ExpenseForm";
+import ExpensesList from "../Expenses/ExpensesList";
 
 const Home = () => {
+
+  const [expense,setExpense]=useState([])
+
+  const expenseHandler=(uAmount,uDescription,uCatagory)=>{
+    setExpense((preExpenses)=>{
+      return [...preExpenses,{amount:uAmount,description:uDescription,catagory:uCatagory,id:Math.random().toString}]
+    })
+  }
+
   return (
     <div>
       <Layout />
-      <form>
-      <div>
-        <label>
-          Amount
-          <div>
-            <input type='number' />
-          </div>
-        </label>
-      </div>
-      <div>
-        <label>
-          Description
-          <div>
-            <input type='text' />
-          </div>
-        </label>
-      </div>
-      <div>
-        <label>
-          Category
-          <div>
-            <select>
-              <option >Food</option>
-              <option>Petrol</option>
-              <option>Salary</option>
-            </select>
-          </div>
-        </label>
-      </div>
-      <div>
-        <label>
-          Add Expenses
-          <div>
-            <button>+</button>
-          </div>
-        </label>
-      </div>
-      </form>
+      <ExpenseForm onAddExpenses={expenseHandler}/>
+      <ExpensesList expensess={expense}/>
     </div>
   );
-}
+};
 
 export default Home;
-
-
-
-

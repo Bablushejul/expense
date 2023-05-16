@@ -1,6 +1,5 @@
-import AuthContext from "../Store/AuthContext";
 
-import React, { useEffect, useState , useContext} from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 
@@ -12,19 +11,13 @@ const Profile = () => {
   const nameChange=(e)=>{setName(e.target.value)};
   const urlChange=(e)=>{setUrl(e.target.value)};
 
-
-
-  const authCtx = useContext(AuthContext)
-
   const submitHandler =(event)=>{
     event.preventDefault();
-
-
 
     fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyCrucgoKIF2AuihFK5MtNhq7CmGdyFnp5A',{
       method:'POST',
       body: JSON.stringify({
-        idToken:authCtx.token,
+        idToken:localStorage.getItem("idToken"),
         displayName:name,
         photoUrl:profileUrl,
         returnSecureToken:false
@@ -53,7 +46,7 @@ const Profile = () => {
     fetch("https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCrucgoKIF2AuihFK5MtNhq7CmGdyFnp5A",{
         method: 'POST',
         body:JSON.stringify({
-            idToken:authCtx.token,
+            idToken:localStorage.getItem("idToken"),
         }),
         headers:{'Content-Type': 'application/json'}
     }).then((res)=>{
@@ -67,31 +60,7 @@ const Profile = () => {
     })
 }
 useEffect(()=>getDataHandler(), )
-  //   }).then((res) => {
-       
-  //     if (res.ok) {
-  //       return res.json();
-  //     } else {
-  //       return res.json().then((data) => {
-  //         let errorMessage = "Authonication Failed";
-  //         if (data && data.error && data.error.message) {
-  //           errorMessage = data.error.message;
-  //         }
-
-  //         throw new Error(errorMessage);
-        
-  //       });
-  //     }
-    
-  //   }).then((data) => {
-  //     authCtx.login(data.idToken);
-  //     alert('Password Changed ')
-  //     history.replace('/')
-  //   })
-  //   .catch((err) => {
-  //     alert(err.message);
-  //   });
-  // }
+  
   return (
     <>
     <div className="main">
