@@ -1,10 +1,16 @@
 import React, { useRef } from 'react';
-
+import {useDispatch} from 'react-redux'
+import { amounActions } from '../Reducers/amount';
 const ExpenseForm = (props) => {
+
+const dispatch=useDispatch()
 
   const amountInputRef=useRef()
   const descriptionInputRef=useRef()
 const catagoryInputRef=useRef()
+
+const id=Math.random(Math.round()*100000000)
+
 
 const submitHandler=(event)=>{
 
@@ -14,7 +20,18 @@ const submitHandler=(event)=>{
   const enteredDescription=descriptionInputRef.current.value;
   const eteredCatagory=catagoryInputRef.current.value;
 
-  props.onAddExpenses(enteredAmount,enteredDescription,eteredCatagory)
+ 
+
+
+
+
+  
+  props.onAddExpenses(enteredAmount,enteredDescription,eteredCatagory,id)
+
+  dispatch(amounActions.addAmountHandler(+enteredAmount))
+
+  console.log(amounActions.addAmountHandler(+enteredAmount))
+
 }
 
   return (
